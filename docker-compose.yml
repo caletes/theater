@@ -6,38 +6,40 @@ services:
         volumes:
             - ../:/var/www/html
         user: me
-    # http:
-    #     build: ./docker/build/httpd:2.4
-    #     ports:
-    #         - 81:1080
-    #     volumes:
-    #         - ../:/var/www/html
-    #         - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
-    #         - ./conf/apache-vhost.conf:/usr/local/apache2/conf/extra/vhost.conf
-    #     user: me
-    #     links:
-    #        - php
+        links:
+            - database
     http:
-        build: ./docker/build/nginx:1.8
-        #build: ./docker/build/nginx:1.9
+        build: ./docker/build/httpd:2.4
         ports:
             - 81:1080
         volumes:
             - ../:/var/www/html
-            - ./conf/nginx.conf:/etc/nginx/nginx.conf
-            - ./conf/nginx-vhost.conf:/etc/nginx/conf.d/default.conf
+            - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+            - ./conf/apache-vhost.conf:/usr/local/apache2/conf/extra/vhost.conf
         user: me
         links:
-            - php
-    # database:
-    #     image: mysql:5.7
+           - php
+    # http:
+    #     build: ./docker/build/nginx:1.8
+    #     #build: ./docker/build/nginx:1.9
     #     ports:
-    #         - 3307:3306
+    #         - 81:1080
     #     volumes:
-    #         - ./volumes/database:/var/lib/mysql
-    #     environment:
-    #         - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    #
+    #         - ../:/var/www/html
+    #         - ./conf/nginx.conf:/etc/nginx/nginx.conf
+    #         - ./conf/nginx-vhost.conf:/etc/nginx/conf.d/default.conf
+    #     user: me
+    #     links:
+    #         - php
+    database:
+        image: mysql:5.7
+        ports:
+            - 3307:3306
+        # volumes:
+        #     - ./volumes/database:/var/lib/mysql
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
     # phpmyadmin:
     #     image: phpmyadmin/phpmyadmin
     #     ports:
