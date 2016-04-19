@@ -1,3 +1,5 @@
 docker/build
 volumes
 !volumes/.gitkeep
+logs
+!logs/.gitkeep
