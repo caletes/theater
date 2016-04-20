@@ -6,7 +6,8 @@ services:
         #build: ./docker/build/php:7-fpm
         volumes:
             - ../:/var/www
-            - ./conf/php.ini:/usr/local/etc/php/php.ini
+            - ./conf/php/php.ini:/usr/local/etc/php/php.ini
+            - ./scripts:/usr/local/bin/theater
         user: me
         links:
             - database
@@ -16,9 +17,9 @@ services:
     #         - 81:1080
     #     volumes:
     #         - ../:/var/www
-    #         - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
-    #         #- ./conf/apache-vhost.conf:/usr/local/apache2/conf/extra/vhost.conf
-    #         - ./conf/apache-vhost-symfony.conf:/usr/local/apache2/conf/extra/vhost.c
+    #         - ./conf/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    #         - ./conf/httpd/vhost-basic.conf:/usr/local/apache2/conf/extra/vhost.conf
+    #         #- ./conf/httpd/vhost-symfony.conf:/usr/local/apache2/conf/extra/vhost.c
     #     user: me
     #     links:
     #        - php
@@ -29,9 +30,9 @@ services:
             - 81:1080
         volumes:
             - ../:/var/www
-            - ./conf/nginx.conf:/etc/nginx/nginx.conf
-            #- ./conf/nginx-vhost.conf:/etc/nginx/conf.d/default.conf
-            - ./conf/nginx-vhost-symfony.conf:/etc/nginx/conf.d/default.conf
+            - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./conf/nginx/vhost-basic.conf:/etc/nginx/conf.d/default.conf
+            #- ./conf/nginx/vhost-symfony.conf:/etc/nginx/conf.d/default.conf
         user: me
         links:
             - php
