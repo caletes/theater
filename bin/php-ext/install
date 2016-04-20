@@ -1,0 +1,9 @@
+USER=root
+PHP_CONTAINER=$(docker-compose ps | grep -Po 'theater_php_[0-9]*')
+EXTENSION=$1
+if [ -f bin/php-ext/dependencies/$EXTENSION ]; then
+    DEPENDENCIES=$(cat bin/php-ext/dependencies/$EXTENSION)
+    docker exec -it --user $USER $PHP_CONTAINER apt-get install -y $DEPENDENCIES
+fi
+docker exec -it --user $USER $PHP_CONTAINER docker-php-ext-install $EXTENSION
+docker-compose restart php

@@ -7,7 +7,6 @@ services:
         volumes:
             - ../:/var/www
             - ./conf/php/php.ini:/usr/local/etc/php/php.ini
-            - ./scripts:/theater/scripts
         user: me
         links:
             - database
