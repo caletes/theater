@@ -1,0 +1,2 @@
+apt-get install -y libicu-dev
+docker-php-ext-install intl

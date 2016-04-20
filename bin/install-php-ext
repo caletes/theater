@@ -1,0 +1,6 @@
+PHP_CONTAINER=$(docker-compose ps | grep -Po 'theater_php_[0-9]*')
+EXTENSION=$1
+DEPS_SCRIPT=/theater/scripts/php-exts-deps/$EXTENSION
+COMMAND="docker exec -it --user root $PHP_CONTAINER bash -c `$DEPS_SCRIPT`"
+echo $COMMAND
+docker-compose restart php

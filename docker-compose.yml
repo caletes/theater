@@ -7,7 +7,7 @@ services:
         volumes:
             - ../:/var/www
             - ./conf/php/php.ini:/usr/local/etc/php/php.ini
-            - ./scripts:/usr/local/bin/theater
+            - ./scripts:/theater/scripts
         user: me
         links:
             - database
@@ -41,7 +41,7 @@ services:
         ports:
             - 3307:3306
         # volumes:
-        #     - ./volumes/database:/var/lib/mysql
+        #     - ./database:/var/lib/mysql
         environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
