@@ -1,3 +1,5 @@
+WORKDIR /var/www
+
 # zlib1g package and zip php extension is for composer
 # git is for bower
 RUN apt-get update && apt-get install -y \
