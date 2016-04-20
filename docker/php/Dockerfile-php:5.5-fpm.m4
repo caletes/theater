@@ -1,3 +1,3 @@
-FROM php:7-fpm
+FROM php:5.5-fpm
 
 include(`inc/commons.inc.m4')

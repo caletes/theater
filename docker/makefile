@@ -50,4 +50,4 @@ dockerfile:
 	if [ -d $$COPIED_FILES_DIR ]; then \
 		cp -R $$COPIED_FILES_DIR $$IMAGE_DIR; \
 	fi; \
-	m4 -I $$IMAGE $$DOCKERFILE_M4 > $$IMAGE_DIR/Dockerfile; \
+	M4PATH=$$IMAGE:$$IMAGE/inc m4 $$DOCKERFILE_M4 > $$IMAGE_DIR/Dockerfile; \

@@ -1,3 +1,3 @@
 FROM nginx:1.8
 
-include(`commons.inc.m4')
+include(`inc/commons.inc.m4')

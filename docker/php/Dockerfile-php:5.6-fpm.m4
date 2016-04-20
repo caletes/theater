@@ -1,3 +1,3 @@
 FROM php:5.6-fpm
 
-include(`commons.inc.m4')
+include(`inc/commons.inc.m4')
